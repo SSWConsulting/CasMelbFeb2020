@@ -1,16 +1,22 @@
-import { Component, TemplateRef, OnInit } from '@angular/core';
-import { faPlus, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { TodoListsClient, TodoItemsClient } from '../services/data.service';
-import { TodoListDto, TodoItemDto, PriorityLevelDto,
-         CreateTodoListCommand, UpdateTodoListCommand,
-         CreateTodoItemCommand, UpdateTodoItemCommand
-  } from '../shared/models';
+import { Component, TemplateRef, OnInit } from "@angular/core";
+import { faPlus, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import {
+  TodoListsClient,
+  TodoItemsClient,
+  TodoListDto,
+  TodoItemDto,
+  PriorityLevelDto,
+  CreateTodoListCommand,
+  UpdateTodoListCommand,
+  CreateTodoItemCommand,
+  UpdateTodoItemCommand,
+} from "../services/ca-workshop-api.service";
 
 @Component({
-  selector: 'app-todo-component',
-  templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css']
+  selector: "app-todo-component",
+  templateUrl: "./todo.component.html",
+  styleUrls: ["./todo.component.css"]
 })
 export class TodoComponent implements OnInit {
   debug = false;
@@ -54,7 +60,7 @@ export class TodoComponent implements OnInit {
 
   showNewListModal(template: TemplateRef<any>): void {
     this.newListModalRef = this.modalService.show(template);
-    setTimeout(() => document.getElementById('title').focus(), 250);
+    setTimeout(() => document.getElementById("title").focus(), 250);
   }
 
   newListCancelled(): void {
@@ -84,7 +90,7 @@ export class TodoComponent implements OnInit {
           this.newListEditor.error = errors.Title[0];
         }
 
-        setTimeout(() => document.getElementById('title').focus(), 250);
+        setTimeout(() => document.getElementById("title").focus(), 250);
       }
     );
   }
@@ -165,13 +171,13 @@ export class TodoComponent implements OnInit {
       id: 0,
       listId: this.selectedList.id,
       priority: this.priorityLevels[0].value,
-      title: '',
+      title: "",
       done: false
     } as TodoItemDto;
 
     this.selectedList.items.push(item);
     const index = this.selectedList.items.length - 1;
-    this.editItem(item, 'itemTitle' + index);
+    this.editItem(item, "itemTitle" + index);
   }
 
   editItem(item: TodoItemDto, inputId: string): void {
@@ -189,8 +195,10 @@ export class TodoComponent implements OnInit {
 
     if (item.id === 0) {
       this.itemsClient
-        .postTodoItem({ ...item, listId: this.selectedList.id
-          } as CreateTodoItemCommand)
+        .postTodoItem({
+          ...item,
+          listId: this.selectedList.id
+        } as CreateTodoItemCommand)
         .subscribe(
           result => {
             item.id = result;
@@ -199,7 +207,7 @@ export class TodoComponent implements OnInit {
         );
     } else {
       this.itemsClient.putTodoItem(item.id, item).subscribe(
-        () => console.log('Update succeeded.'),
+        () => console.log("Update succeeded."),
         error => console.error(error)
       );
     }

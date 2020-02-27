@@ -14,9 +14,9 @@ import { AuthorizeGuard } from "src/api-authorization/authorize.guard";
 import { AuthorizeInterceptor } from "src/api-authorization/authorize.interceptor";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ModalModule } from "ngx-bootstrap/modal";
-import { API_BASE_URL } from "./services/data.service";
 import { environment } from "src/environments/environment";
 import { TodoComponent } from "./todo/todo.component";
+import { API_BASE_URL } from './services/ca-workshop-api.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import { TodoComponent } from "./todo/todo.component";
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
-    { provide: API_BASE_URL, useValue: environment.apiBaseUrl }
+    { provide: API_BASE_URL, useValue: environment.apiBaseUrl },
   ],
   bootstrap: [AppComponent]
 })
