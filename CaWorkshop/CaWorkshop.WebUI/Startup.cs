@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using CaWorkshop.Application;
 using CaWorkshop.Infrastructure;
 using CaWorkshop.Application.Common.Interfaces;
+using CleanArchitecture.WebUI.Common;
 
 namespace CaWorkshop.WebUI
 {
@@ -58,6 +59,7 @@ namespace CaWorkshop.WebUI
                 app.UseHsts();
             }
 
+            app.UseCustomExceptionHandler();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
