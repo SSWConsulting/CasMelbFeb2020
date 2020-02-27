@@ -2,6 +2,7 @@ using CaWorkshop.Application.Common.Exceptions;
 using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Domain.Entities;
 using MediatR;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,7 +15,7 @@ namespace CaWorkshop.Application.TodoLists.Commands.UpdateTodoList
         public string Title { get; set; }
     }
 
-    public class UpdateTodoListCommandHandler 
+    public class UpdateTodoListCommandHandler
         : IRequestHandler<UpdateTodoListCommand>
     {
         private readonly IApplicationDbContext _context;

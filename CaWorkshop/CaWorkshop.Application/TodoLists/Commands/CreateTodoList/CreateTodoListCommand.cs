@@ -1,6 +1,7 @@
 using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Domain.Entities;
 using MediatR;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace CaWorkshop.Application.TodoLists.Commands.CreateTodoList
         public string Title { get; set; }
     }
 
-    public class CreateTodoListCommandHandler 
+    public class CreateTodoListCommandHandler
         : IRequestHandler<CreateTodoListCommand, int>
     {
         private readonly IApplicationDbContext _context;
@@ -21,7 +22,7 @@ namespace CaWorkshop.Application.TodoLists.Commands.CreateTodoList
             _context = context;
         }
 
-        public async Task<int> Handle(CreateTodoListCommand request, 
+        public async Task<int> Handle(CreateTodoListCommand request,
             CancellationToken cancellationToken)
         {
             var entity = new TodoList();
