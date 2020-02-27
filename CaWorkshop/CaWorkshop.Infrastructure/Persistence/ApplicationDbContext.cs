@@ -1,4 +1,5 @@
-﻿using CaWorkshop.WebUI.Models;
+﻿using CaWorkshop.Domain.Entities;
+using CaWorkshop.Infrastructure.Identity;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CaWorkshop.WebUI.Data
+namespace CaWorkshop.Infrastructure.Persistence
 {
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
