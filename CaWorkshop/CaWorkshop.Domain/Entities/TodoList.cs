@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using CaWorkshop.Domain.Common;
 
 namespace CaWorkshop.Domain.Entities
 {
-    public class TodoList
+    public class TodoList : AuditableEntity
     {
         public TodoList()
         {

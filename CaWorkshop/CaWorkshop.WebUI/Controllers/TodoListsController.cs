@@ -1,4 +1,5 @@
 using CaWorkshop.Application.TodoLists.Commands.CreateTodoList;
+using Microsoft.AspNetCore.Authorization;
 using CaWorkshop.Application.TodoLists.Commands.DeleteTodoList;
 using CaWorkshop.Application.TodoLists.Commands.UpdateTodoList;
 using CaWorkshop.Application.TodoLists.Queries.GetTodoLists;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace CaWorkshop.WebUI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TodoListsController : ControllerBase

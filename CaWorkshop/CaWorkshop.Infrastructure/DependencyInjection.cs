@@ -30,6 +30,7 @@ namespace CaWorkshop.Infrastructure
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
+            services.AddScoped<IIdentityService, IdentityService>();
             return services;
         }
     }

@@ -41,7 +41,7 @@ import { TodoComponent } from "./todo/todo.component";
         component: FetchDataComponent,
         canActivate: [AuthorizeGuard]
       },
-      { path: "todo", component: TodoComponent }
+      { path: "todo", component: TodoComponent, canActivate: [AuthorizeGuard] }
     ]),
     BrowserAnimationsModule,
     ModalModule.forRoot()

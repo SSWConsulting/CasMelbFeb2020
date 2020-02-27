@@ -1,7 +1,9 @@
+using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Infrastructure.Persistence;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Moq;
 using System;
 
 namespace CaWorkshop.Application.UnitTests
@@ -17,14 +19,19 @@ namespace CaWorkshop.Application.UnitTests
             var operationalStoreOptions = Options.Create(
                 new OperationalStoreOptions
                 {
-                    DeviceFlowCodes = 
+                    DeviceFlowCodes =
                         new TableConfiguration("DeviceCodes"),
-                    PersistedGrants = 
+                    PersistedGrants =
                         new TableConfiguration("PersistedGrants")
                 });
+            // mock UserService
+            var currentUserServiceMock = new Mock<ICurrentUserService>();
+            currentUserServiceMock.Setup(m => m.UserId)
+                .Returns("00000000-0000-0000-0000-000000000000");
 
             var context = new ApplicationDbContext(
-                options, operationalStoreOptions);
+                options, operationalStoreOptions,
+                currentUserServiceMock.Object);
 
             ApplicationDbContextSeeder.Seed(context);
 
