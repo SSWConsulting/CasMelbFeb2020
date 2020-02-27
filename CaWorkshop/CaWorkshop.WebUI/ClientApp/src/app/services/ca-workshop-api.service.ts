@@ -14,7 +14,9 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class OidcConfigurationClient {
     private http: HttpClient;
     private baseUrl: string;
@@ -75,7 +77,9 @@ export class OidcConfigurationClient {
     }
 }
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TodoItemsClient {
     private http: HttpClient;
     private baseUrl: string;
@@ -240,7 +244,9 @@ export class TodoItemsClient {
     }
 }
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TodoListsClient {
     private http: HttpClient;
     private baseUrl: string;
@@ -452,7 +458,9 @@ export class TodoListsClient {
     }
 }
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class WeatherForecastClient {
     private http: HttpClient;
     private baseUrl: string;
